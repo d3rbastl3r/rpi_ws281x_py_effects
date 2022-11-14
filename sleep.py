@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
-# NeoPixel library strandtest example
-# Author: Tony DiCola (tony@tonydicola.com)
-#
-# Direct port of the Arduino NeoPixel library strandtest example.  Showcases
-# various animations on a strip of NeoPixels.
 
 import time
 from rpi_ws281x import PixelStrip, Color
-import argparse
 
 # LED strip configuration:
 LED_COUNT = 100       # Number of LED pixels.
@@ -40,32 +34,14 @@ def sleepMode(strip, red_max_val, green_max_val, blue_max_val):
             strip.show()
             time.sleep(SLEEP_TIME)
 
-# Main program logic follows:
 if __name__ == '__main__':
-    # Process arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
-    args = parser.parse_args()
-
-    # Create NeoPixel object with appropriate configuration.
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-    # Intialize the library (must be called once before other functions).
-    strip.begin()
-
-    print('Press Ctrl-C to quit.')
-    if not args.clear:
-        print('Use "-c" argument to clear LEDs on exit')
-
-    try:
-
-        while True:
-            print('Light for the night')
-            sleepMode(strip, 255, 0, 0)     # Red
-            sleepMode(strip, 0, 255, 0)     # Green
-            sleepMode(strip, 0, 0, 255)     # Blue
-            sleepMode(strip, 255, 162, 57)  # Warm white
-
-
-    except KeyboardInterrupt:
-        if args.clear:
-            colorWipe(strip, Color(0, 0, 0), 10)
+    strip.begin() # Intialize the library (must be called once before other functions).
+    
+    while True:
+        print('Light for the night')
+        sleepMode(strip, 255, 0, 0)     # Red
+        sleepMode(strip, 0, 255, 0)     # Green
+        sleepMode(strip, 0, 0, 255)     # Blue
+        sleepMode(strip, 255, 162, 57)  # Warm white
+        pass
