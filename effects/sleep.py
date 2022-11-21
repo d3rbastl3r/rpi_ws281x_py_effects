@@ -52,7 +52,7 @@ def parseColorString(color: str):
     }
 
 def runEffect(strip, speed, red_max_val, green_max_val, blue_max_val):
-    SLEEP_TIME = 0.005 * speed
+    SLEEP_TIME = 0.005 / speed
 
     for pixel_index in range(strip.numPixels()+1):
         prev_pixel_index = pixel_index - 1 # Index of the pixel we want to fade out
