@@ -41,14 +41,11 @@ def parseColorString(color: str):
     parsed values
     '''
     color_int_val = int(color, base=16)
-    red_mask = 0xFF0000
-    green_mask = 0x00FF00
-    blue_mask = 0x0000FF
     
     return {
-        'red': (color_int_val & red_mask)>>16,
-        'green': (color_int_val & green_mask)>>8,
-        'blue': (color_int_val & blue_mask)>>0
+        'red': (color_int_val >> 16) & 0xFF,
+        'green': (color_int_val >> 8) & 0xFF,
+        'blue': color_int_val & 0xFF
     }
 
 def runEffect(strip, speed, red_max_val, green_max_val, blue_max_val):
