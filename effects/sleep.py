@@ -52,11 +52,11 @@ def runEffect(strip, speed, red_max_val, green_max_val, blue_max_val):
     for pixel_index in range(strip.numPixels()+1):
         prev_pixel_index = pixel_index - 1 # Index of the pixel we want to fade out
 
-        for brightnes in range(0, 256):
-            brightnes_factor = brightnes / 255.0
-            red_val = int(red_max_val * brightnes_factor)
-            green_val = int(green_max_val * brightnes_factor)
-            blue_val = int(blue_max_val * brightnes_factor)
+        for brightness in range(0, 256):
+            brightness_factor = brightness / 255.0
+            red_val = int(red_max_val * brightness_factor)
+            green_val = int(green_max_val * brightness_factor)
+            blue_val = int(blue_max_val * brightness_factor)
 
             if pixel_index < strip.numPixels():
                 strip.setPixelColor(pixel_index, Color(green_val, red_val, blue_val)) # Fade in pixel
