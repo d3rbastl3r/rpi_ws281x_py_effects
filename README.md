@@ -2,7 +2,6 @@
 
 # Execution (how to)
 
-* Move to the directory of this `README.md` file
 * If any python dependencies are missing, install all dependencies by executin following command:
     ```bash
     # Because we need to run scripts as sudo, we also need to install libraries for sudo user
