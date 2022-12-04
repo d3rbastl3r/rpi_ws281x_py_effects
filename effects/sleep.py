@@ -21,7 +21,7 @@ LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 @click.option('-c', '--color', type=str, default='FF0000', show_default=True, help='RGB Value for the effect. You need to provide this value as a hexadecimal.')
 def main(leds: int, speed: float, color: str):
     '''
-    This is a sleep effect which provide a light for the night
+    This is a sleep effect which provides a light for the night
     '''
     if not color.startswith('0x'):
         color = '0x' + color
