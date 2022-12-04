@@ -30,7 +30,7 @@ def main(leds: int, speed: float, color: str):
     color_dict = parseColorString(color)
     
     strip = PixelStrip(leds, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-    strip.begin() # Intialize the library (must be called once before other functions).
+    strip.begin() # Initialize the library (must be called once before other functions).
     
     runEffect(strip, speed, color_dict['red'], color_dict['green'], color_dict['blue']);
     pass
