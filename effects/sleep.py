@@ -20,16 +20,16 @@ LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 @click.option('-c', '--color', type=str, default='FF0000', show_default=True, help='RGB Value for the effect. You need to provide this value as a hexadecimal.')
 def main(leds: int, speed: float, color: str):
     '''
-    This is a sleep effect which provide a light for the night
+    This is a sleep effect which provides a light for the night
     '''
     if not color.startswith('0x'):
         color = '0x' + color
         
-    print(f'Sleep effect started with following parameter: leds={leds}, speed={speed}, color={color}')
+    print(f'Sleep effect started with following parameters: leds={leds}, speed={speed}, color={color}')
     color_dict = parseColorString(color)
     
     strip = PixelStrip(leds, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-    strip.begin() # Intialize the library (must be called once before other functions).
+    strip.begin() # Initialize the library (must be called once before other functions).
     
     runEffect(strip, speed, color_dict['red'], color_dict['green'], color_dict['blue']);
 
