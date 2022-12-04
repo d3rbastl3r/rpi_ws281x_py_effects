@@ -26,7 +26,7 @@ def main(leds: int, speed: float, color: str):
     if not color.startswith('0x'):
         color = '0x' + color
         
-    print(f'Sleep effect started with following parameter: leds={leds}, speed={speed}, color={color}')
+    print(f'Sleep effect started with following parameters: leds={leds}, speed={speed}, color={color}')
     color_dict = parseColorString(color)
     
     strip = PixelStrip(leds, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
