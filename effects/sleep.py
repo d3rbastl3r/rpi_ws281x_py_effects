@@ -32,7 +32,6 @@ def main(leds: int, speed: float, color: str):
     strip.begin() # Intialize the library (must be called once before other functions).
     
     runEffect(strip, speed, color_dict['red'], color_dict['green'], color_dict['blue']);
-    pass
 
 def parseColorString(color: str):
     '''
@@ -67,7 +66,6 @@ def runEffect(strip, speed, red_max_val, green_max_val, blue_max_val):
 
             strip.show()
             time.sleep(SLEEP_TIME)
-    pass
 
 if __name__ == "__main__":
     main()
