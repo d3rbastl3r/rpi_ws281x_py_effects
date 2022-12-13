@@ -27,25 +27,16 @@ def main(speed: float, color: str):
         color = '0x' + color
     
     print(f'Sleep effect started with following parameters: speed={speed}, color={color}')
-    color_dict = parseColorString(color)
+    color_dict = {
+        'red': int(color[2:4], base=16),
+        'green': int(color[4:6], base=16),
+        'blue': int(color[6:], base=16)
+    }
     
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     strip.begin() # Initialize the library (must be called once before other functions).
     
     runEffect(strip, speed, color_dict['red'], color_dict['green'], color_dict['blue']);
-
-def parseColorString(color: str):
-    '''
-    Parse the color given as string to single RGB colors as int values and return the dictionary with
-    parsed values
-    '''
-    color_int_val = int(color, base=16)
-    
-    return {
-        'red': (color_int_val >> 16) & 0xFF,
-        'green': (color_int_val >> 8) & 0xFF,
-        'blue': color_int_val & 0xFF
-    }
 
 def runEffect(strip, speed, red_max_val, green_max_val, blue_max_val):
     sleep_time = 0.005 / speed
