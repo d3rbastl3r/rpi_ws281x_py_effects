@@ -5,7 +5,7 @@ import os
 
 import click
 
-from rpi_ws281x import PixelStrip, Color
+from rpi_ws281x import ws, PixelStrip, Color
 
 # LED strip default configuration:
 LED_COUNT = int(os.environ.get('WS281X_LED_COUNT', '50'))            # Amount of leds in the strip
@@ -33,7 +33,7 @@ def main(speed: float, color: str):
         'blue': int(color[6:], base=16)
     }
     
-    strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+    strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL, ws.WS2811_STRIP_RGB)
     strip.begin() # Initialize the library (must be called once before other functions).
     
     runEffect(strip, speed, color_dict['red'], color_dict['green'], color_dict['blue']);
@@ -51,10 +51,10 @@ def runEffect(strip, speed, red_max_val, green_max_val, blue_max_val):
             blue_val = int(blue_max_val * brightness_factor)
 
             if pixel_index < strip.numPixels():
-                strip.setPixelColor(pixel_index, Color(green_val, red_val, blue_val)) # Fade in pixel
+                strip.setPixelColor(pixel_index, Color(red_val, green_val, blue_val)) # Fade in pixel
             
             if prev_pixel_index >= 0:
-                strip.setPixelColor(prev_pixel_index, Color(green_max_val-green_val, red_max_val-red_val, blue_max_val-blue_val)) # Fade out pixel
+                strip.setPixelColor(prev_pixel_index, Color(red_max_val-red_val, green_max_val-green_val, blue_max_val-blue_val)) # Fade out pixel
 
             strip.show()
             time.sleep(sleep_time)
